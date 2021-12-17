@@ -6,3 +6,24 @@ label{
     width: 10px;
     display:inline-table;
 }  
+
+button:hover {
+    opacity: 2;
+}
+
+input[type=text] {
+  width: 200px;
+  padding: auto;
+  display: inline;
+ /* margin: 10px 0; */
+}
+
+label:focus {
+    width: auto;
+    padding: 5px;
+}
+.subscribebtn{
+    width: 100px;
+    padding: 5px;
+    background-color: cadetblue;
+}
