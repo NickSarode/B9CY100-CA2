@@ -27,3 +27,9 @@ label:focus {
     padding: 5px;
     background-color: cadetblue;
 }
+
+.Header{
+    color: black;
+    font-size: large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
