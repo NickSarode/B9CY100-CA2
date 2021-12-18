@@ -28,6 +28,10 @@
     </ul>
   </div>
 </nav>
+
+<select class="form-control" id="currencyDropdown" name="currencyDropdown" onchange="getRateofSelectedCurrency(this.value)"></select>
+<input type="number" name="" value="" id = "rateCurrency">
+
 <div id = "demo" class="container justify-content-center">
 
 </div>
@@ -38,5 +42,52 @@
 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
 </script>
 <script src="data.js"></script>
+<script>
+  let myDataList = []
+  // $(document).ready(() => { onselect="getRateofSelectedCurrency(value)"
+  //   var mainContainer = document.getElementById("myData");
+  //      for (var i = 0; i < data1.length; i++) {
+  //          var div = document.createElement("div");
+  //          div.innerHTML = 'Name: ' + data1[i].name + ' ' + data1[i].abbr + ' ' + data1[i].val;
+  //          mainContainer.appendChild(div);
+  //          document.getElementById("name1").value = data1[i].name;
+  //          document.getElementById("val").value = data1[i].val;
+  //      }
+  // });
+
+  $(document).ready(function () {
+         $.ajax({
+             type: "GET",
+             //url: "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894",
+             url: "http://localhost:8080/getRates",
+             data: "{}",
+             success: function (data) {
+                 var s = '<option value="-1">Please Select a currency</option>';
+                 var rate = Object.entries(data.rates)
+                 debugger;
+                 console.log(rate)
+                 console.log(rate[1][0])
+                 myDataList = rate
+                 console.log('myDataList : ' + myDataList)
+                 for (var i = 0; i < rate.length; i++) {
+                     s += '<option value="' + rate[i][0] + '">' + rate[i][0] + '</option>';
+                 }
+                 $("#currencyDropdown").html(s);
+             }
+         });
+     });
+
+     function getRateofSelectedCurrency(value){
+         let val = ''
+         for (var i = 0; i < myDataList.length; i++) {
+           if (myDataList[i][0] == value){
+             val = myDataList[i][1]
+             console.log(myDataList[i][0] + ' ' +val)
+             document.getElementById('rateCurrency').value = val;
+           }
+         }
+     }
+
+</script>
   </body>
 </html>
