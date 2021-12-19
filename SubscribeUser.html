@@ -1,0 +1,61 @@
+<!Document html>
+<html>
+<head>
+   <link rel="stylesheet" href="styles.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   <!-- <script>
+      function subscribeButton(){
+         document.getElementsByClassName("subscribebtn");
+      }
+   </script> -->
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body>
+        <div class="container" align="center">
+              
+              <h1>Subscribe</h1>
+               <form>
+                <div class="form-group">   
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" required>
+                </div>
+  
+                <div class="form-group">
+                <label for="currency">Currency</label>
+                <select name="currency" class="form-control" id="abbr">
+                   <option value="inr">INR</option>
+                   <option value="eur">EUR</option>
+                   <option value="usd">USD</option>
+                   <option value="sar">SAR</option>
+                   <option value="yen">YEN</option>
+                </select> 
+                </div>
+
+                <div class="form-group">
+                <label for="curr_value">Rate</label>
+                <input type="text" class="form-control" name="curr_value">
+                </div>
+
+                <div class="form-group">
+                <label for="condition">Condition</label>
+                <select name="condition" class="form-control" id="con">
+                 <option value="above">Above</option>
+                 <option value="below">Below</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                <label for="value">Enter Value</label>
+                <input type="text" class="form-control" name="value">
+                </div>
+
+                <button type="button" class="btn btn-default">Subscribe</button>
+               </form>
+        </div>
+</body>
+</html>
