@@ -24,7 +24,7 @@ data1 = [{
   'val' : 21.6455
 }]
 
-const url = "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894"
+const url = "http://localhost:8080/getRates"
 fetch(url).then((response)=>{
   return response.json();  // converting byte data to json
 }).then(data=>{
@@ -33,7 +33,7 @@ fetch(url).then((response)=>{
   var ratesStr = JSON.stringify(data.rates);
   let ratesObj = Object.entries(data.rates);
   //console.log(ratesObj[1][0])
-  //console.log(ratesObj);
+  console.log(ratesObj);
   document.getElementById("strRatesObj").value = ratesObj
   let cur = '';
 //   Object.entries(data.rates).forEach((entry) => {

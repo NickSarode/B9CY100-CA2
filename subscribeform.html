@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>My Example</title>
+
+<!-- CSS -->
+<style>
+.myForm {
+font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+font-size: 0.8em;
+width: 30em;
+padding: 1em;
+}
+
+.myForm * {
+box-sizing: border-box;
+}
+
+.myForm label {
+padding: 0;
+font-weight: bold;
+text-align: right;
+display: block;
+}
+
+.myForm input,
+.myForm select,
+.myForm textarea {
+margin-left: 2em;
+float: right;
+width: 20em;
+border: 1px solid #ccc;
+font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+font-size: 0.9em;
+padding: 0.3em;
+}
+
+.myForm textarea {
+height: 100px;
+}
+
+.myForm button {
+padding: 1em;
+border-radius: 0.5em;
+background: #eee;
+border: none;
+font-weight: bold;
+margin-left: 14em;
+margin-top: 1.8em;
+}
+
+.myForm button:hover {
+background: #ccc;
+cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+  <!-- <div class="navbar-header">
+    <a class="navbar-brand" href="#">WebSiteName</a>
+  </div> -->
+  <ul class="nav navbar-nav">
+    <li class="active"><a href="home.html">Home</a></li>
+    <li><a href="yourSubscription.html">Your Subscription</a></li>
+    <li><a href="subscribeform.html">Subscribe</a></li>
+    <!-- <li><a href="#">Page 3</a></li> -->
+  </ul>
+  </div>
+  </nav>
+<form class="myForm" id = "form" method="post" enctype="application/json" action="http://localhost:8080/addUser">
+
+<p>
+<label>Email
+<input type="email" id="email" name="email_address">
+</label>
+</p>
+<br>
+<p>
+<label>Name
+<input type="text" name="customer_name" id="name" required>
+</label>
+</p>
+<br>
+<p>
+<label>Currency
+<select id="currencyDropdown" name="currencyDropdown">
+<!-- <option value="" selected="selected">Select One</option> -->
+</select>
+</label>
+</p>
+<br>
+<p>
+<label>Threshold
+<!-- <input type="text" name="customer_name" required> -->
+<input type="number" name="" value="" id = "threshold" required>
+</label>
+</p>
+<br>
+
+<p>
+<label>Condition
+<select id="condition" name="condition">
+<option value="" selected="selected">Select One</option>
+<option value="True" >Above</option>
+<option value="False" >Below</option>
+<!-- <option value="telepathy" >We'll Guess!</option> -->
+</select>
+</label>
+</p>
+<br>
+<!-- <p>
+<label>Enquiry
+<textarea name="comments" maxlength="500"></textarea>
+</label>
+</p> -->
+<p>
+  <input type="submit" name="submitform" id="submit" value="Submit">
+  </p>
+<!-- <p><button onclick="submitform()" type="submit">Submit Enquiry</button></p> -->
+
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+</script>
+<script src="subscribe.js"></script>
+<script>
+  let myDataList = []
+  $(document).ready(function () {
+         $.ajax({
+             type: "GET",
+             //url: "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894",
+             url: "http://localhost:8080/getRates",
+             data: "{}",
+             success: function (data) {
+                 var s = '<option value="-1">Please Select a currency</option>';
+                 var rate = Object.entries(data.rates)
+                 debugger;
+                 //console.log(rate)
+                 //console.log(rate[1][0])
+                 myDataList = rate
+                 //console.log('myDataList : ' + myDataList)
+                 for (var i = 0; i < rate.length; i++) {
+                     s += '<option value="' + rate[i][0] + '">' + rate[i][0] + '</option>';
+                 }
+                 $("#currencyDropdown").html(s);
+             }
+         });
+     });
+
+    var form = document.getElementById("form");
+    form.addEventListener('submit',function(e){
+      e.preventDefault()
+      var email = document.getElementById('email').value;
+      var name = document.getElementById('name').value;
+      var currency = document.getElementById('currencyDropdown').value;
+      var threshold = document.getElementById('threshold').value;
+      var condition = document.getElementById('condition').value;
+
+      fetch("http://localhost:8080/addUser",{
+        method: 'POST',
+        body:JSON.stringify({
+          email: email,
+          name: name,
+          currency: currency,
+          threshold: threshold,
+          condition: condition
+        }),
+        headers: {
+            "Content-Type":"application/json; charset = UTF-8"
+        }
+      })
+      .then(function(response){
+        return response.json();
+      })
+      .then(function(data){
+        console.log(data)
+      })
+    })
+</script>
+
+</body>
+</html>
