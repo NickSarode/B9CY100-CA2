@@ -91,6 +91,7 @@ cursor: pointer;
 <p>
 <label>Name
 <input type="text" name="customer_name" id="name" required>
+<div class="container justify-content-center"></div>
 </label>
 </p>
 <br>
@@ -183,6 +184,11 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
         }
       })
       .then(function(response){
+        if(response.ok){
+          alert("New User is added")
+          document.getElementById('email').value = "";
+          document.getElementById('name').value = "";
+        }
         return response.json();
       })
       .then(function(data){
