@@ -35,10 +35,16 @@ label:focus {
 .Header{
     color: black;
     font-size: large;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
 }
 .table{
     color:gray;
     font-size: medium;
     font-family:Arial, Helvetica, sans-serif;
+}
+.form-control{
+    width: 20% ;
+}
+.form-group{
+    width: 20%;
 }
