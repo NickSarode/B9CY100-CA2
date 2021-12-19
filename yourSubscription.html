@@ -59,7 +59,7 @@
   cursor: pointer;
   }
   </style>
-  <body>
+  <body onload = "loading()">
     <nav class="navbar navbar-inverse">
     <div class="container-fluid">
     <div class="navbar-header">
@@ -83,8 +83,11 @@
         <!-- <p><button type="submit" name="button" id="fetchDetails" onclick="fetchDetails()" value="Fetch Details"></button></p> -->
         <!-- <p><button id="fetchDetails" type="submit">Fetch Details</button></p> -->
         <p>
-          <input type="submit" name="submitform" id="submit" onclick="fetchUD()" value="Fetch Details">
+          <input type="submit" name="submitform" id="fetch" value="Fetch Details">
           </p>
+          <div id = "subscription">
+
+          <br><br>
           <p>
           <label>Name
           <input type="text" name="customer_name" id="name" >
@@ -102,7 +105,7 @@
           <p>
           <label>Threshold
           <!-- <input type="text" name="customer_name" required> -->
-          <input type="number" name="" value="" id = "threshold" >
+          <input type="number" min="0" max="100000000" step="0.00000001" name="" value="" id = "threshold" >
           </label>
           </p>
           <br>
@@ -126,6 +129,7 @@
           <p>
             <input type="submit" name="submitform" id="submit" value="Submit">
             </p>
+          </div>
           <!-- <p><button onclick="submitform()" type="submit">Submit Enquiry</button></p> -->
 
     </form>
@@ -157,62 +161,41 @@
              });
          });
 
-      // var form = document.getElementById("form");
-      // form.addEventListener('submit',function(e){
-      //   var email = document.getElementById("email").value;
-      //   const url = "http://localhost:8080/getUser/"+email;
-      //   console.log(url)
-      //   // debugger;
-      //   // fetch(url).then((response)=>{
-      //   //       return response.json();  // converting byte data to json
-      //   //    }).then(data=>{
-      //   //      console.log(data);
-      //   //    });
-      //   // debugger;
-      //   $.ajax({
-      //       type: "GET",
-      //       //url: "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894",
-      //       url: url,
-      //       data: "{}",
-      //       success: function (data) {
-      //           console.log(data);
-      //           //let details = ''
-      //           var dataList = Object.entries(data)
-      //           console.log(dataList);
-      //           var details = []
-      //           details = dataList[1]
-      //           var d = details[1]
-      //           //var obj = {d}
-      //           console.log(details)
-      //           console.log('data: '+ d);
-      //           console.log(d.length);
-      //           if(d.length > 0){
-      //             console.log(d[0])
-      //                 var name = d[0]['name']
-      //                 var email_add = d[0]['email']
-      //                 var currency = d[0]['currency']
-      //                 var threshold = d[0]['threshold']
-      //                 var condition = d[0]['condition']
-      //                 alert(name + ' ' + email_add + ' ' + currency + ' ' + threshold + ' ' + condition);
-      //                  document.getElementById("name").value = name;
-      //                  document.getElementById("currencyDropdown").value = currency;
-      //                  document.getElementById("threshold").value = threshold;
-      //                  document.getElementById("condition").value = condition;
-      //           }
-      //       }
-      //   });
-      // });
-
-             // $.ajax({
-             //     type: "GET",
-             //     //url: "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894",
-             //     url: url,
-             //     data: "{}",
-             //     success: function (data) {
-             //         console.log(data);
-             //     }
-             // });
-         //});
+         var form = document.getElementById("form");
+         form.addEventListener('submit',function(e){
+           e.preventDefault()
+           var email = document.getElementById('email').value;
+           var name = document.getElementById('name').value;
+           var currency = document.getElementById('currencyDropdown').value;
+           var threshold = document.getElementById('threshold').value;
+           var condition = document.getElementById('condition').value;
+          console.log(name + ' ' + email + ' ' + currency + ' ' + threshold + ' ' + condition)
+           fetch("http://localhost:8080/updateUser",{
+             method: 'POST',
+             body:JSON.stringify({
+               email: email,
+               name: name,
+               currency: currency,
+               threshold: threshold,
+               condition: condition
+             }),
+             headers: {
+                 "Content-Type":"application/json; charset = UTF-8"
+             }
+           })
+           .then(function(response){
+             if(response.ok){
+               document.getElementById('email').value = "";
+               document.getElementById('email').disabled = false;
+               document.getElementById('subscription').style.display = 'none';
+               alert("Data updated successfully");
+             }
+             return response.json();
+           })
+           .then(function(data){
+             console.log(data)
+           })
+         })
 
     </script>
   </body>
