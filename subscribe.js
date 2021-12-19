@@ -38,16 +38,19 @@
 //
 //
 //  }
+function loading(){
+  document.getElementById('subscription').style.display = "none";
+}
 
-function fetchUD(){
-  debugger;
+$('#fetch').click(function(event){
+  event.preventDefault();
   var email = document.getElementById("email").value;
   // alert(email)
   const url = "http://localhost:8080/getUser/"+email;
+  debugger;
   // alert(url)
   console.log(1)
   console.log(url)
-
   $.ajax({
       type: "GET",
       //url: "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894",
@@ -66,18 +69,26 @@ function fetchUD(){
           //console.log('data: '+ d[0]);
           console.log(d.length);
           console.log(d[0])
-          var name = d[0]['name']
-                var email_add = d[0]['email']
-                var currency = d[0]['currency']
-                var threshold = d[0]['threshold']
-                var condition = d[0]['condition']
-          console.log(name + ' ' + email_add + ' ' + currency + ' ' + threshold + ' ' + condition)
-          $("#name").val(name);
-                 document.getElementById('name').value = name;
-                 document.getElementById('currencyDropdown').value = currency;
-                 document.getElementById('threshold').value = threshold;
-                 document.getElementById('condition').value = condition;
-          console.log("success");
+          if(d.length > 0){
+            var name = d[0]['name']
+                  var email_add = d[0]['email']
+                  var currency = d[0]['currency']
+                  var threshold = d[0]['threshold']
+                  var condition = d[0]['condition']
+            console.log(name + ' ' + email_add + ' ' + currency + ' ' + threshold + ' ' + condition)
+            $("#name").val(name);
+                   document.getElementById('name').value = name;
+                   document.getElementById('currencyDropdown').value = currency;
+                   document.getElementById('threshold').value = threshold;
+                   document.getElementById('condition').value = condition;
+            console.log("success");
+            document.getElementById('subscription').style.display = "block";
+            document.getElementById('email').disabled = true;
+          } else {
+            alert("There is no subscription with this Email ID");
+            document.getElementById('email').value = "";
+          }
+
           // if(d.length > 0){
           //   console.log(d[0])
           //       var name = d[0]['name']
@@ -94,4 +105,4 @@ function fetchUD(){
       }
   });
 
-}
+})
