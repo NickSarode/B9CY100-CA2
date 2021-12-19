@@ -66,12 +66,83 @@
       <a class="navbar-brand" href="#">WebSiteName</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Your Subscription</a></li>
+      <li class="active"><a href="index.html">Home</a></li>
+      <li><a href="yourSubscription.html">Your Subscription</a></li>
       <li><a href="subscribeform.html">Subscribe</a></li>
       <!-- <li><a href="#">Page 3</a></li> -->
     </ul>
     </div>
     </nav>
+
+    <form class="myForm" id = "form" method="post" enctype="application/json">
+      <p>
+      <label>Email
+      <input type="email" id="email" name="email_address">
+      </label>
+        </p>
+        <!-- <p><button type="submit" name="button" id="fetchDetails" onclick="fetchDetails()" value="Fetch Details"></button></p> -->
+        <!-- <p><button id="fetchDetails" type="submit">Fetch Details</button></p> -->
+        <p>
+          <input type="submit" name="submitform" id="submit" value="Fetch Details">
+          </p>
+        <div id="details">
+
+        </div>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+        <!-- <script src="subscribe.js"></script> -->
+    <script>
+      // function fetch(){
+      //   var email = document.getElementById("email").value;
+      //   // alert(email)
+      //   const url = "http://localhost:8080/getUser/"+email;
+      //   // alert(url)
+      //   console.log(1)
+      //   console.log(url)
+      //   fetch(url).then((response)=>{
+      //     // return response.json();  // converting byte data to json
+      //   }).then(data=>{
+      //     console.log(data);
+      //   })
+      // }
+      var form = document.getElementById("form");
+      form.addEventListener('submit',function(e){
+        var email = document.getElementById("email").value;
+        const url = "http://localhost:8080/getUser/"+email;
+        debugger;
+        // fetch(url).then((response)=>{
+        //       return response.json();  // converting byte data to json
+        //    }).then(data=>{
+        //      console.log(data);
+        //    });
+        // debugger;
+        $.ajax({
+            type: "GET",
+            //url: "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894",
+            url: url,
+            data: "{}",
+            success: function (data) {
+                console.log(data);
+                let details = ''
+
+
+            }
+        });
+      });
+
+             // $.ajax({
+             //     type: "GET",
+             //     //url: "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894",
+             //     url: url,
+             //     data: "{}",
+             //     success: function (data) {
+             //         console.log(data);
+             //     }
+             // });
+         //});
+
+    </script>
   </body>
 </html>
