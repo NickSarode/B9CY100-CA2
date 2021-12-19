@@ -27,7 +27,7 @@ box-sizing: border-box;
 padding: 0;
 font-weight: bold;
 text-align: center;
-display: inline-flex;
+display: block;
 }
 
 .myForm input,
@@ -65,7 +65,7 @@ cursor: pointer;
 </head>
 <body>
   <nav class="navbar navbar-inverse">
-  <div class="container-fluid" align="center">
+  <div class="container-fluid">
   <!-- <div class="navbar-header">
     <a class="navbar-brand" href="#">WebSiteName</a>
   </div> -->
@@ -77,11 +77,11 @@ cursor: pointer;
   </ul>
   </div>
   </nav>
-<form class="myForm" id = "form" method="post" enctype="application/json" action="http://localhost:8080/addUser" align="center">
+<form class="form-group" id = "form" method="post" enctype="application/json" action="http://localhost:8080/addUser" align="center">
 
 <p>
 <label>Email
-<input type="email" id="email" name="email_address">
+<input type="email" class="form-control" id="email" name="email_address">
 </label>
 </p>
 <br>
