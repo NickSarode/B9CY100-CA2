@@ -1,0 +1,50 @@
+.container{
+    padding: 20px;
+  }
+
+label{
+    width: 50px;
+    display:inline-table;
+}  
+
+button:hover {
+    opacity: 2;
+}
+
+input[type=text] {
+  width: 150px;
+  padding: auto;
+  display: inline;
+ /* margin: 10px 0; */
+}
+
+label:focus {
+    width: auto;
+    padding: 5px;
+}
+/* .subscribebtn{
+    width: 100px;
+    padding: 5px;
+    background-color: cadetblue;
+} */
+
+/* .btn btn-default{
+    background-color:black;
+} */
+
+.Header{
+    color: black;
+    font-size: large;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.table{
+    color:gray;
+    font-size: medium;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.form-control{
+    width: 20% ;
+}
+.form-group{
+    width: 20%;
+}
