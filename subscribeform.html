@@ -16,6 +16,8 @@ font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 font-size: 0.8em;
 width: 30em;
 padding: 1em;
+padding-left: auto;
+padding-right: auto;
 }
 
 .myForm * {
@@ -26,7 +28,8 @@ box-sizing: border-box;
 padding: 0;
 font-weight: bold;
 text-align: center;
-display: inline-flex;
+display: block;
+/* width: 100px; */
 }
 
 .myForm input,
@@ -76,17 +79,19 @@ cursor: pointer;
   </ul>
   </div>
   </nav>
-<form class="myForm" id = "form" method="post" enctype="application/json" action="http://localhost:8080/addUser">
+<form class="myForm" id = "form" method="post" enctype="application/json" action="http://localhost:8080/addUser" align="center">
 
 <p>
 <label>Email
 <input type="email" id="email" name="email_address">
+<div class="container justify-content-center"></div>
 </label>
 </p>
 <br>
 <p>
 <label>Name
 <input type="text" name="customer_name" id="name" required>
+<div class="container justify-content-center"></div>
 </label>
 </p>
 <br>
@@ -179,6 +184,11 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
         }
       })
       .then(function(response){
+        if(response.ok){
+          alert("New User is added")
+          document.getElementById('email').value = "";
+          document.getElementById('name').value = "";
+        }
         return response.json();
       })
       .then(function(data){
