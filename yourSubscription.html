@@ -83,54 +83,125 @@
         <!-- <p><button type="submit" name="button" id="fetchDetails" onclick="fetchDetails()" value="Fetch Details"></button></p> -->
         <!-- <p><button id="fetchDetails" type="submit">Fetch Details</button></p> -->
         <p>
-          <input type="submit" name="submitform" id="submit" value="Fetch Details">
+          <input type="submit" name="submitform" id="submit" onclick="fetchUD()" value="Fetch Details">
           </p>
-        <div id="details">
+          <p>
+          <label>Name
+          <input type="text" name="customer_name" id="name" >
+          </label>
+          </p>
+          <br>
+          <p>
+          <label>Currency
+          <select id="currencyDropdown" name="currencyDropdown">
+          <!-- <option value="" selected="selected">Select One</option> -->
+          </select>
+          </label>
+          </p>
+          <br>
+          <p>
+          <label>Threshold
+          <!-- <input type="text" name="customer_name" required> -->
+          <input type="number" name="" value="" id = "threshold" >
+          </label>
+          </p>
+          <br>
 
-        </div>
+          <p>
+          <label>Condition
+          <select id="condition" name="condition">
+          <option value="" selected="selected">Select One</option>
+          <option value="True" >Above</option>
+          <option value="False" >Below</option>
+          <!-- <option value="telepathy" >We'll Guess!</option> -->
+          </select>
+          </label>
+          </p>
+          <br>
+          <!-- <p>
+          <label>Enquiry
+          <textarea name="comments" maxlength="500"></textarea>
+          </label>
+          </p> -->
+          <p>
+            <input type="submit" name="submitform" id="submit" value="Submit">
+            </p>
+          <!-- <p><button onclick="submitform()" type="submit">Submit Enquiry</button></p> -->
+
     </form>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
     </script>
-        <!-- <script src="subscribe.js"></script> -->
+        <script src="subscribe.js"></script>
     <script>
-      // function fetch(){
+       let myDataList = []
+      $(document).ready(function () {
+             $.ajax({
+                 type: "GET",
+                 //url: "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894",
+                 url: "http://localhost:8080/getRates",
+                 data: "{}",
+                 success: function (data) {
+                     var s = '<option value="-1">Please Select a currency</option>';
+                     var rate = Object.entries(data.rates)
+                     // debugger;
+                     //console.log(rate)
+                     //console.log(rate[1][0])
+                     // myDataList = rate
+                     //console.log('myDataList : ' + myDataList)
+                     for (var i = 0; i < rate.length; i++) {
+                         s += '<option value="' + rate[i][0] + '">' + rate[i][0] + '</option>';
+                     }
+                     $("#currencyDropdown").html(s);
+                 }
+             });
+         });
+
+      // var form = document.getElementById("form");
+      // form.addEventListener('submit',function(e){
       //   var email = document.getElementById("email").value;
-      //   // alert(email)
       //   const url = "http://localhost:8080/getUser/"+email;
-      //   // alert(url)
-      //   console.log(1)
       //   console.log(url)
-      //   fetch(url).then((response)=>{
-      //     // return response.json();  // converting byte data to json
-      //   }).then(data=>{
-      //     console.log(data);
-      //   })
-      // }
-      var form = document.getElementById("form");
-      form.addEventListener('submit',function(e){
-        var email = document.getElementById("email").value;
-        const url = "http://localhost:8080/getUser/"+email;
-        debugger;
-        // fetch(url).then((response)=>{
-        //       return response.json();  // converting byte data to json
-        //    }).then(data=>{
-        //      console.log(data);
-        //    });
-        // debugger;
-        $.ajax({
-            type: "GET",
-            //url: "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894",
-            url: url,
-            data: "{}",
-            success: function (data) {
-                console.log(data);
-                let details = ''
-
-
-            }
-        });
-      });
+      //   // debugger;
+      //   // fetch(url).then((response)=>{
+      //   //       return response.json();  // converting byte data to json
+      //   //    }).then(data=>{
+      //   //      console.log(data);
+      //   //    });
+      //   // debugger;
+      //   $.ajax({
+      //       type: "GET",
+      //       //url: "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894",
+      //       url: url,
+      //       data: "{}",
+      //       success: function (data) {
+      //           console.log(data);
+      //           //let details = ''
+      //           var dataList = Object.entries(data)
+      //           console.log(dataList);
+      //           var details = []
+      //           details = dataList[1]
+      //           var d = details[1]
+      //           //var obj = {d}
+      //           console.log(details)
+      //           console.log('data: '+ d);
+      //           console.log(d.length);
+      //           if(d.length > 0){
+      //             console.log(d[0])
+      //                 var name = d[0]['name']
+      //                 var email_add = d[0]['email']
+      //                 var currency = d[0]['currency']
+      //                 var threshold = d[0]['threshold']
+      //                 var condition = d[0]['condition']
+      //                 alert(name + ' ' + email_add + ' ' + currency + ' ' + threshold + ' ' + condition);
+      //                  document.getElementById("name").value = name;
+      //                  document.getElementById("currencyDropdown").value = currency;
+      //                  document.getElementById("threshold").value = threshold;
+      //                  document.getElementById("condition").value = condition;
+      //           }
+      //       }
+      //   });
+      // });
 
              // $.ajax({
              //     type: "GET",
