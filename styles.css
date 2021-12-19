@@ -3,7 +3,7 @@
   }
 
 label{
-    width: 10px;
+    width: 50px;
     display:inline-table;
 }  
 
@@ -12,7 +12,7 @@ button:hover {
 }
 
 input[type=text] {
-  width: 200px;
+  width: 150px;
   padding: auto;
   display: inline;
  /* margin: 10px 0; */
@@ -22,11 +22,11 @@ label:focus {
     width: auto;
     padding: 5px;
 }
-.subscribebtn{
+/* .subscribebtn{
     width: 100px;
     padding: 5px;
     background-color: cadetblue;
-}
+} */
 
 .Header{
     color: black;
