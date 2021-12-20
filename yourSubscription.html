@@ -60,7 +60,7 @@
   .myForm button:hover {
   background: #ccc;
   cursor: pointer;
-  opacity: 2; 
+  opacity: 2;
   }
   </style>
   <body onload = "loading()">
@@ -147,7 +147,7 @@
              $.ajax({
                  type: "GET",
                  //url: "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894",
-                 url: "http://localhost:8080/getRates",
+                 url: "http://104.40.132.4:5000/getRates",
                  data: "{}",
                  success: function (data) {
                      var s = '<option value="-1">Please Select a currency</option>';
@@ -174,7 +174,7 @@
            var threshold = document.getElementById('threshold').value;
            var condition = document.getElementById('condition').value;
           console.log(name + ' ' + email + ' ' + currency + ' ' + threshold + ' ' + condition)
-           fetch("http://localhost:8080/updateUser",{
+           fetch("http://104.40.132.4:5000/updateUser",{
              method: 'POST',
              body:JSON.stringify({
                email: email,
