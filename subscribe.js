@@ -46,7 +46,7 @@ $('#fetch').click(function(event){
   event.preventDefault();
   var email = document.getElementById("email").value;
   // alert(email)
-  const url = "http://localhost:8080/getUser/"+email;
+  const url = "http://104.40.132.4:5000/getUser/"+email;
   debugger;
   // alert(url)
   console.log(1)
