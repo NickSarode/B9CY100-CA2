@@ -34,7 +34,7 @@ fetch(url).then((response)=>{
   let ratesObj = Object.entries(data.rates);
   //console.log(ratesObj[1][0])
   console.log(ratesObj);
-  document.getElementById("strRatesObj").value = ratesObj
+  // document.getElementById("strRatesObj").value = ratesObj
   let cur = '';
 //   Object.entries(data.rates).forEach((entry) => {
 //   const [key, value] = entry;
