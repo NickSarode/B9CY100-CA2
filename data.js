@@ -23,7 +23,7 @@
 //   'abbr' : 'JPY',
 //   'val' : 21.6455
 // }]
-
+// data of currency and rates of the currency is getting displayed on the home.html from API
 const url = "http://104.40.132.4:5000/getRates"
 fetch(url).then((response)=>{
   return response.json();  // converting byte data to json
