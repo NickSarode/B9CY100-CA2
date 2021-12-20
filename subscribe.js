@@ -38,10 +38,11 @@
 //
 //
 //  }
+
 function loading(){
   document.getElementById('subscription').style.display = "none";
 }
-
+// Jquery on fetch id is implemented to get user data based on email id
 $('#fetch').click(function(event){
   event.preventDefault();
   var email = document.getElementById("email").value;
@@ -51,7 +52,7 @@ $('#fetch').click(function(event){
   // alert(url)
   console.log(1)
   console.log(url)
-  $.ajax({
+  $.ajax({// ajax added to fetch the data from API
       type: "GET",
       //url: "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894",
       url: url,
