@@ -9,6 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title></title>
   </head>
+  <!--Start css style is added for the form of yourSubscription.html from https://www.quackit.com/html/codes/html_form_code.cfm -->
   <style>
   .myForm {
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -63,7 +64,9 @@
   opacity: 2;
   }
   </style>
+  <!--End css style is added for the form of yourSubscription.html -->
   <body onload = "loading()">
+<!-- Navigation bar is added from reference https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp#:~:text=With%20Bootstrap%2C%20a%20navigation%20bar%20can%20extend%20or,on%20extra%20large%2C%20large%2C%20medium%20or%20small%20screens%29. -->
     <nav class="navbar navbar-inverse">
     <div class="container-fluid">
     <!-- <div class="navbar-header">
@@ -143,7 +146,7 @@
         <script src="subscribe.js"></script>
     <script>
        let myDataList = []
-      $(document).ready(function () {
+      $(document).ready(function () { //ajax is added to fetch data from api to set currencyDropdown
              $.ajax({
                  type: "GET",
                  //url: "http://api.exchangeratesapi.io/v1/latest?access_key=f27c66a897df264865447f0c2c682894",
@@ -164,7 +167,7 @@
                  }
              });
          });
-
+// addEventListener added on submit button to update user details
          var form = document.getElementById("form");
          form.addEventListener('submit',function(e){
            e.preventDefault()
@@ -176,7 +179,7 @@
           console.log(name + ' ' + email + ' ' + currency + ' ' + threshold + ' ' + condition)
            fetch("http://104.40.132.4:5000/updateUser",{
              method: 'POST',
-             body:JSON.stringify({
+             body:JSON.stringify({ // The data which needs to update for a user is getting stringify in JSON format and added in body format
                email: email,
                name: name,
                currency: currency,
